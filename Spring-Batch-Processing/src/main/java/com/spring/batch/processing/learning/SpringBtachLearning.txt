@@ -1,0 +1,49 @@
+1. What is Spring Batch Processing?
+
+Spring Batch is a framework in the Spring ecosystem used to process large volumes of data efficiently. It is commonly used for:
+
+Reading data from files, databases, APIs
+Processing millions of records
+Generating reports
+Data migration
+Scheduled ETL (Extract, Transform, Load) jobs
+Real-world Example
+
+Suppose you have 10 lakh customer records. You need to:
+
+Read records from a CSV file
+Validate customer data
+Store valid records in PostgreSQL
+
+Instead of loading everything into memory, Spring Batch processes data in chunks.
+
+Read 1000 Records
+↓
+Process 1000 Records
+↓
+Write 1000 Records
+↓
+Commit Transaction
+----------------------
+Spring Batch Architecture
+
+
+Job
+└── Step
+├── Reader
+├── Processor
+└── Writer
+
+-----------------------------
+2.What is Partitioning in Spring Batch?
+
+  .Partitioning is a technique to process data in parallel by dividing work into multiple partitions.
+
+  .Multiple threads to process a range of data sets.
+
+  .1,2,3,4,5,6,7,8, ...............1000 records
+
+  .1-250 Thread-1
+  .251-500 Thread-2
+  501-750 Thread-3
+  751-1000 Thread-4
